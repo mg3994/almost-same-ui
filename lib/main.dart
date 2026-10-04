@@ -6,6 +6,7 @@ import 'widgets/bottom_navigation.dart';
 import 'widgets/main_content_view.dart';
 import 'widgets/tusk_view.dart';
 import 'widgets/tusk_sign_in_dialog.dart';
+import 'widgets/pinterest_login_dialog.dart';
 
 void main() {
   runApp(const MicrosoftStoreApp());
@@ -88,9 +89,12 @@ class _StoreHomePageState extends State<StoreHomePage> {
               onAvatarTap: () {
                 TuskSignInDialog.show(context);
               },
+              onPinterestTap: () {
+                PinterestLoginDialog.show(context);
+              },
             ),
 
-            // Mode Switcher Banner (Microsoft Store vs Tusk AI)
+            // Mode Switcher Banner (Microsoft Store vs Tusk AI vs Pinterest)
             Container(
               height: 32,
               color: const Color(0xFFE5E5E5),
@@ -105,6 +109,15 @@ class _StoreHomePageState extends State<StoreHomePage> {
                   Row(
                     children: [
                       TextButton.icon(
+                        onPressed: () => PinterestLoginDialog.show(context),
+                        icon: const Icon(Icons.pin, size: 14, color: Color(0xFFE60023)),
+                        label: const Text('Pinterest Login Modal', style: TextStyle(fontSize: 11, color: Color(0xFFE60023))),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      TextButton.icon(
                         onPressed: () => TuskSignInDialog.show(context),
                         icon: const Icon(Icons.login, size: 14),
                         label: const Text('Open Tusk Modal Dialog', style: TextStyle(fontSize: 11)),
@@ -113,7 +126,7 @@ class _StoreHomePageState extends State<StoreHomePage> {
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 6),
                       ElevatedButton.icon(
                         onPressed: () {
                           setState(() {

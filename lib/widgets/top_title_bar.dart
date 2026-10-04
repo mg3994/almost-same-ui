@@ -4,12 +4,14 @@ class TopTitleBar extends StatelessWidget {
   final TextEditingController searchController;
   final ValueChanged<String> onSearchChanged;
   final VoidCallback? onAvatarTap;
+  final VoidCallback? onPinterestTap;
 
   const TopTitleBar({
     Super.key,
     required this.searchController,
     required this.onSearchChanged,
     this.onAvatarTap,
+    this.onPinterestTap,
   });
 
   Widget _buildMsLogo() {
@@ -104,24 +106,55 @@ class TopTitleBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(width: 8),
-              // Profile Avatar
-              InkWell(
-                onTap: onAvatarTap,
-                borderRadius: BorderRadius.circular(14),
-                child: Container(
-                  width: 28,
-                  height: 28,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFDEDEDE),
-                    shape: BoxShape.circle,
+              // Pinterest Modal Trigger Button
+              Tooltip(
+                message: 'Pinterest Login Modal',
+                child: InkWell(
+                  onTap: onPinterestTap,
+                  borderRadius: BorderRadius.circular(14),
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFE60023),
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'P',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'serif',
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    'MS',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF3B3B3B),
+                ),
+              ),
+              const SizedBox(width: 8),
+              // Profile Avatar
+              Tooltip(
+                message: 'Tusk Sign-In Modal',
+                child: InkWell(
+                  onTap: onAvatarTap,
+                  borderRadius: BorderRadius.circular(14),
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFDEDEDE),
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'MS',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF3B3B3B),
+                      ),
                     ),
                   ),
                 ),
